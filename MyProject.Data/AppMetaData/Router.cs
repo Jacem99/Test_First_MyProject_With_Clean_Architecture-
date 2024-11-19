@@ -19,6 +19,14 @@ namespace MyProject.Data.AppMetaData
             public const string GetById = Prefix + Id;
 
         }
+        public static class DepartmentRouting
+        {
+            public const string Prefix = Rule + "Department";
+            public const string Paginated = Prefix + "/Paginated";
+            public const string List = Prefix + "/List";
+            public const string GetById = Prefix + Id;
+
+        }
 
     }
 }

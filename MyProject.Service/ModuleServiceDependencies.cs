@@ -10,7 +10,12 @@ namespace MyProject.Service
     public static class ModuleServiceDependencies
     {
         public static IServiceCollection AddServiceDependencies(this IServiceCollection services)
-               => services.AddScoped<IStudentServiece, StudentServiece>();
+        {
+            services.AddScoped<IStudentServiece, StudentServiece>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+
+            return services;
+        }
 
     }
 }
