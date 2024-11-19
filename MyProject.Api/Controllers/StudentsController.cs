@@ -1,12 +1,12 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
-using MyProject.Core.Features.Queries.Models;
+using MyProject.Core.Features.Students.Queries.Models;
 using MyProject.Data.AppMetaData;
 
 namespace MyProject.Api.Controllers
 {
-   
+
     [ApiController]
     public class StudentsController : ControllerBase
     {
@@ -19,6 +19,12 @@ namespace MyProject.Api.Controllers
 
         [HttpGet(Router.StudentRouting.List)]
         public async Task<IActionResult> GetStudentList()=> Ok(await _mediator.Send(new GetStudentListQuery()));
+
+        /// Paginated List 
+       
+        [HttpGet(Router.StudentRouting.Paginated)]
+        public async Task<IActionResult> GetStudentPaginatedList([FromQuery] GetStudentPaginationListQuery query) =>Ok(await _mediator.Send(query));
+
 
         [HttpGet(Router.StudentRouting.GetById)]
         public async Task<IActionResult> GetStudentById([FromRoute] int Id) => 

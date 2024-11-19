@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyProject.Core.Features.Queries.Results;
+using MyProject.Core.Features.Students.Queries.Results;
 using MyProject.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace MyProject.Core.Mapping.Students
     public partial class StudentProfile : Profile
     {
         public void GetStudentListMapping()
-        {   CreateMap<Student, ModelGetStudentListMapping>().ForMember(dest => dest.DepartmentName, options =>           options.MapFrom(src => src.Department.Name));
+        {   CreateMap<Student, ModelGetStudentListMapping>().ForMember(dest => dest.DepartmentName, options => options.MapFrom(src => src.Department.Name));
          
         }
     }   

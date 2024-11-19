@@ -19,12 +19,24 @@ namespace MyProject.Service.Services
             _studentRepository = studentRepository;
         }
 
+      
+
         public async Task<Student> GetStudentByIdAsync(int Id) =>
             _studentRepository.GetByNoTracking()
                 .Include(d => d.Department).Where(s => s.StudentId.Equals(Id))
                 .FirstOrDefault();
 
+       public Task<List<Student>> GetStudentsListAsync()=> _studentRepository.GetStudentsListAsync();
 
-        public Task<List<Student>> GetStudentsListAsync()=> _studentRepository.GetStudentsListAsync();
+        public IQueryable<Student> GetStudentQueryable() => _studentRepository.GetByNoTracking().Include(d => d.Department).AsQueryable();
+
+        public IQueryable<Student> FilterGetStudentPaginatedQueryable(string search)
+        {
+          var queryable = _studentRepository.GetByNoTracking().Include(d => d.Department).AsQueryable();
+
+           return queryable.Where(q => q.Name.Contains(search)|| q.Adress.Contains(search));
+        }
+
+       
     }
 }

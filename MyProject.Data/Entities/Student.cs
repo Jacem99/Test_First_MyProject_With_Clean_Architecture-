@@ -12,7 +12,7 @@ namespace MyProject.Data.Entities
     public class Student
     {
         [Key] public int StudentId { get; set; }
-        [StringLength(200)] public string Name { get; set; }
+        [StringLength(200)] public string? Name { get; set; }
         [StringLength(500)] public string Adress { get; set; }
         [StringLength(200)] public string Phone { get; set; }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MyProject.Data.AppMetaData
 {
@@ -16,6 +14,7 @@ namespace MyProject.Data.AppMetaData
         public static class StudentRouting
         {
             public const string Prefix = Rule + "Student";
+            public const string Paginated = Prefix+"/Paginated";
             public const string List = Prefix + "/List";
             public const string GetById = Prefix + Id;
 

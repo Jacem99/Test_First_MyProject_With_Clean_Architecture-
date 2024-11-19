@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace MyProject.Core.Generic_Response
 {
     public class Response<T>
+
+        
     {
         public HttpStatusCode StatusCode {  get; set; }
         public string Message { get; set; }

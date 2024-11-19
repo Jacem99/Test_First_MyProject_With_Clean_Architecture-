@@ -17,7 +17,7 @@ namespace MyProject.Data.Entities
         }
 
         [Key] public int DepartmentId { get; set; }
-        [StringLength(500)] public string Name { get; set; }
+        [StringLength(500)] public string? Name { get; set; }
 
        // [InverseProperty("Departments")]
         public virtual ICollection<Student> Students { get; set; }
