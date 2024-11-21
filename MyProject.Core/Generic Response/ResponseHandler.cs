@@ -12,14 +12,14 @@ namespace MyProject.Core.Generic_Response
         {
             
         }
-        public Response<T> Success<T>(T entity , object Meta = null)
+        public Response<T> Success<T>(T entity , object Meta = null,string message="Successfully")
         {
             return new Response<T>()
             {
                 Data = entity,
                 Succeeded = true,
                 StatusCode = System.Net.HttpStatusCode.OK,
-                Message = "Successfully",
+                Message = message,
                 Meta = Meta
             };
         }

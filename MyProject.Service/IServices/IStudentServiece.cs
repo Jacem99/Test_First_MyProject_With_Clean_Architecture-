@@ -14,6 +14,7 @@ namespace MyProject.Service.IServices
         public Task<Student> GetStudentByIdAsync(int Id);
         public IQueryable<Student> GetStudentQueryable();
         public IQueryable<Student> FilterGetStudentPaginatedQueryable(string search);
+        public Task DeleteStudent(Student student);
     }
 }
  

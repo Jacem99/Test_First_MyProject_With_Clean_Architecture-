@@ -10,6 +10,7 @@ namespace MyProject.Infrastructure.IRepository
     public interface IStudentRepository : IGenericRepository<Student>
     {
         public Task<List<Student>> GetStudentsListAsync();
+        public Task DeleteStudentAsync(Student student);
 
     }
 }

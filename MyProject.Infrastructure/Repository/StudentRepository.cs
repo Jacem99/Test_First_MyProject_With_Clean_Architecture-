@@ -18,6 +18,9 @@ namespace MyProject.Infrastructure.Repository
         {
             _studentsRepository = dbContext.Set<Student>();
         }
+
+        public async Task DeleteStudentAsync(Student student)=>
+            await DeleteAsync(student);
         public async Task<List<Student>> GetStudentsListAsync() => await _studentsRepository.Include(d => d.Department).ToListAsync();
         
     }

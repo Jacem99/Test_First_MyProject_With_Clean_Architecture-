@@ -18,9 +18,6 @@ namespace MyProject.Service.Services
         {
             _studentRepository = studentRepository;
         }
-
-      
-
         public async Task<Student> GetStudentByIdAsync(int Id) =>
             _studentRepository.GetByNoTracking()
                 .Include(d => d.Department).Where(s => s.StudentId.Equals(Id))
@@ -37,6 +34,9 @@ namespace MyProject.Service.Services
            return queryable.Where(q => q.Name.Contains(search)|| q.Adress.Contains(search));
         }
 
-       
+
+        public async Task DeleteStudent(Student student) => 
+            await _studentRepository.DeleteAsync(student);
+        
     }
 }

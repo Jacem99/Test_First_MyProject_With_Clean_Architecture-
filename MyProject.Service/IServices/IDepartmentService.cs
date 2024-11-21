@@ -10,5 +10,7 @@ namespace MyProject.Service.IServices
     public interface IDepartmentService
     {
      Task<ICollection<Department>> GetDepartmentList();
+     Task<Department> GetDepartmentById(int id);
+        Task DeleteDeaprtmentById(Department department);
     }
 }

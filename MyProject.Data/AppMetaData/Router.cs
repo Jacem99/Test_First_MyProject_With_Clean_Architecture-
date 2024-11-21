@@ -16,7 +16,9 @@ namespace MyProject.Data.AppMetaData
             public const string Prefix = Rule + "Student";
             public const string Paginated = Prefix+"/Paginated";
             public const string List = Prefix + "/List";
+            public const string Delete = Prefix + "/Delete";
             public const string GetById = Prefix + Id;
+            public const string DeletById = Delete + Id;
 
         }
         public static class DepartmentRouting

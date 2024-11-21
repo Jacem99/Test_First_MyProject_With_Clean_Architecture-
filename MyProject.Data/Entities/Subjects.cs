@@ -17,7 +17,7 @@ namespace MyProject.Data.Entities
         [Key] public int SubjectsId { get; set; }
         [StringLength(500)]
         public string SubjectName { get; set; }
-        public DateTime Period { get; set; }
+        public int Period { get; set; }
 
         public virtual ICollection<StudentSubject> StudentSubjects { get; set; }
         public virtual ICollection<DepartmentSubject> DepartmentSubjects { get; set; }

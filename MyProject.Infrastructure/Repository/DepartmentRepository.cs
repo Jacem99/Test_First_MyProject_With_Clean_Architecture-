@@ -19,8 +19,13 @@ namespace MyProject.Infrastructure.Repository
         {
             _departmentsRepository = dbContext.Set<Department>();
         }
-        public async Task<ICollection<Department>> GetListDepartment()
-            => await _departmentsRepository.ToListAsync();
-        
+
+      /*  public async Task<Department> GetDepartmentById(int id)
+        {
+            await _departmentsRepository
+        }*/
+
+        public async Task<ICollection<Department>> GetListDepartment()=> await _departmentsRepository.ToListAsync();
+            
     }
 }

@@ -12,6 +12,7 @@ namespace MyProject.Core.Mapping.Departments
     {
         public DepartmentProfile() {
             GetListDepartmentModelMapping();
+            GetDepartmentIdIdModelMapping();
         }
     }
 }
