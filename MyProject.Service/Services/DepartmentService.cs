@@ -33,7 +33,7 @@ namespace MyProject.Service.Services
             return departById;
         }           
 
-        public Task<ICollection<Department>> GetDepartmentList()
+        public Task<IEnumerable<Department>> GetDepartmentList()
              => _departmentRepository.GetListDepartment();
     }
 }

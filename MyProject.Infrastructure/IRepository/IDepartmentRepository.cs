@@ -9,7 +9,7 @@ namespace MyProject.Infrastructure.IRepository
 {
     public interface  IDepartmentRepository : IGenericRepository<Department>
     {
-        public Task<ICollection<Department>> GetListDepartment();
+        public Task<IEnumerable<Department>> GetListDepartment();
        // public Task<Department> GetDepartmentById(int id);
     }
 }

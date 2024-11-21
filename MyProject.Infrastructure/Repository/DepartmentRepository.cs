@@ -25,7 +25,7 @@ namespace MyProject.Infrastructure.Repository
             await _departmentsRepository
         }*/
 
-        public async Task<ICollection<Department>> GetListDepartment()=> await _departmentsRepository.ToListAsync();
+        public async Task<IEnumerable<Department>> GetListDepartment()=> await _departmentsRepository.ToListAsync();
             
     }
 }
