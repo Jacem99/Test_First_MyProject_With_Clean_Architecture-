@@ -23,7 +23,7 @@ namespace MyProject.Service.Services
             => await _departmentRepository.DeleteAsync(department);
         
 
-        public async Task<Department> GetDepartmentById(int id)
+        public async Task<Department> GetDepartmentByIdInclude(int id)
         {
             var departById = await _departmentRepository.GetByNoTracking()
                 .Where(d => d.DepartmentId.Equals(id))
@@ -31,7 +31,13 @@ namespace MyProject.Service.Services
                 .Include(dsub => dsub.DepartmentSubjects)
                 .ThenInclude(sub => sub.Subjects).FirstOrDefaultAsync();
             return departById;
-        }           
+        }
+        public async Task<Department> GetDepartmentById(int id)
+        {
+            var departById = await _departmentRepository.GetByNoTracking()
+                .Where(d => d.DepartmentId.Equals(id)).FirstOrDefaultAsync();
+            return departById;
+        }
 
         public Task<IEnumerable<Department>> GetDepartmentList()
              => _departmentRepository.GetListDepartment();
