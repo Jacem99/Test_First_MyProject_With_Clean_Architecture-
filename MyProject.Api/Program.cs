@@ -24,7 +24,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 builder.Services
     .AddInfrastructureDependencies()
     .AddServiceDependencies()
-    .AddCoreDependencies();
+    .AddCoreDependencies()
+    .AddRegisterModuleInfrastructureDependencies();
+   
 
 
 var app = builder.Build();

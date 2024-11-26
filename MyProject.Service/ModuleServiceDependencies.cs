@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MyProject.Infrastructure.IRepository;
-using MyProject.Infrastructure.Repository;
+
 using MyProject.Service.IServices;
 using MyProject.Service.Services;
 
@@ -13,6 +12,7 @@ namespace MyProject.Service
         {
             services.AddScoped<IStudentServiece, StudentServiece>();
             services.AddScoped<IDepartmentService, DepartmentService>();
+              services.AddScoped<ISubjectService, SubjectService>();
 
             return services;
         }

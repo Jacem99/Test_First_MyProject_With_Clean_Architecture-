@@ -27,6 +27,19 @@ namespace MyProject.Data.AppMetaData
             public const string Paginated = Prefix + "/Paginated";
             public const string List = Prefix + "/List";
             public const string GetById = Prefix + Id;
+            public const string Delete = Prefix + "/Delete";
+            public const string DeletById = Delete + Id;
+
+        }
+        public static class SubjectRouting
+        {
+            public const string Prefix = Rule + "Subject";
+            public const string Paginated = Prefix + "/Paginated";
+            public const string List = Prefix + "/List";
+            public const string GetById = Prefix + Id;
+
+            public const string Delete = Prefix + "/Delete";
+            public const string DeletById = Delete + Id;
 
         }
 
