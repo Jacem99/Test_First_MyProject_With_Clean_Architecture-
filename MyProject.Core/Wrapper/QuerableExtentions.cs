@@ -18,7 +18,6 @@ namespace MyProject.Core.Wrapper
 
             int count = await source.AsNoTracking().CountAsync();
             if (count == 0) return PaginationResult<T>.Success(new List<T>() , count , pageNumber , pageSize);
-
        
             pageNumber  = pageNumber <=0 ? 1 : pageNumber;
             var item = await source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
