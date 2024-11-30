@@ -1,14 +1,8 @@
 ﻿using MyProject.Data.Entities;
-using MyProject.Infrastructure.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyProject.Service.IServices
 {
-    public interface IStudentServiece 
+    public interface IStudentServiece
     {
         public Task<List<Student>> GetStudentsListAsync();
         public Task<Student> GetStudentByIdAsync(int Id);
@@ -17,4 +11,3 @@ namespace MyProject.Service.IServices
         public Task DeleteStudent(Student student);
     }
 }
- 

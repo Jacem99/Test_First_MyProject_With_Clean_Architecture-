@@ -7,6 +7,7 @@ namespace MyProject.Core.Mapping.Users
         public ApplicationUserProfile()
         {
             AddUserMapping();
+            UpdateApplicationUserMapping();
             GetApplicationUserMapping();
         }
     }

@@ -7,6 +7,8 @@ namespace MyProject.Service.IServices
         Task<List<ApplicationUser>> GetUserList();
         Task<ApplicationUser> GetUserById(string userId);
         Task<ApplicationUser> GetUserByEmail(string email);
+        public IQueryable<ApplicationUser> FilterGetStudentPaginatedQueryable(string names);
+
         Task<bool> IsExistPhone(string Phone);
         Task<bool> IsExistEmail(string Email);
         Task<bool> IsExistUser();

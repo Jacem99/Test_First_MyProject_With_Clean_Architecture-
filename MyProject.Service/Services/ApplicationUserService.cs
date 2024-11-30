@@ -50,5 +50,11 @@ namespace MyProject.Service.Services
             if (resultAdd.Succeeded) return true;
             return false;
         }
+
+        public IQueryable<ApplicationUser> FilterGetStudentPaginatedQueryable(string names = null)
+        {
+            var userQueryable = _userManager.Users.AsNoTracking().AsQueryable();
+            return userQueryable.Where(u => u.FullName.Contains(names));
+        }
     }
 }

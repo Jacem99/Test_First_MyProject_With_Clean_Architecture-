@@ -1,18 +1,20 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.Identity.Client;
 using MyProject.Core.Features.Users.Queries.Models;
 using MyProject.Core.Features.Users.Result;
 using MyProject.Core.Generic_Response;
+using MyProject.Core.Wrapper;
 using MyProject.Data.Entities;
 using MyProject.Service.IServices;
+using System.Linq.Expressions;
 
 namespace MyProject.Core.Features.Users.Queries.Handler
 {
     public class GetApplicationUserHandler :
         ResponseHandler,
         IRequestHandler<GetApplicationUserListModel, Response<List<GetApplicationUserResponse>>>,
-        IRequestHandler<GetApplicationUserByIdModel, Response<GetApplicationUserResponse>>
+        IRequestHandler<GetApplicationUserByIdModel, Response<GetApplicationUserResponse>>,
+        IRequestHandler<GetApplicationUserByPagination, PaginationResult<GetApplicationUserPaginatedListResponse>>
 
     {
         private readonly IApplicationUserService _applicationUserService;
@@ -31,8 +33,8 @@ namespace MyProject.Core.Features.Users.Queries.Handler
             List<ApplicationUser> UserList = await _applicationUserService.GetUserList();
 
             // Mapping 
-           List<GetApplicationUserResponse> mapping =  _map.Map<List<GetApplicationUserResponse>>(UserList);
-            
+            List<GetApplicationUserResponse> mapping = _map.Map<List<GetApplicationUserResponse>>(UserList);
+
             // return User List 
             return Success(mapping);
         }
@@ -43,12 +45,27 @@ namespace MyProject.Core.Features.Users.Queries.Handler
             // Check If User Exist 
             var checkUserExist = await _applicationUserService.GetUserById(request._userId);
             if (checkUserExist is null)
-                    return NotFound<GetApplicationUserResponse>("User you want to find not found !!");
+                return NotFound<GetApplicationUserResponse>("User you want to find not found !!");
             // Mapping 
-           var mapping = _map.Map<GetApplicationUserResponse>(checkUserExist);
+            var mapping = _map.Map<GetApplicationUserResponse>(checkUserExist);
 
             // Return 
             return Success(mapping);
+        }
+
+        public async Task<PaginationResult<GetApplicationUserPaginatedListResponse>> Handle(GetApplicationUserByPagination request, CancellationToken cancellationToken)
+        {
+
+            Expression<Func<ApplicationUser, GetApplicationUserPaginatedListResponse>> expression = e => new GetApplicationUserPaginatedListResponse(e.Id, e.FullName, e.UserName, e.Email, e.Country, e.Age, e.PhoneNumber);
+
+            // Get List Pagination 
+            IQueryable<ApplicationUser> userQueryable = _applicationUserService.FilterGetStudentPaginatedQueryable(request.Search);
+
+            PaginationResult<GetApplicationUserPaginatedListResponse> userList = await userQueryable.Select(expression).ToPaginationListAsync(request.PageNumber, request.PageSize);
+
+            // return Users
+            return userList;
+
         }
     }
 }

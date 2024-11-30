@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProject.Core.Features.Students.Queries.Results
+﻿namespace MyProject.Core.Features.Students.Queries.Results
 {
     public class GetStudentPaginatedListResponse
     {

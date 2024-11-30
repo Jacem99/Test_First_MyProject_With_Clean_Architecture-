@@ -23,6 +23,10 @@ namespace MyProject.Api.Controllers
         public async Task<Response<List<GetApplicationUserResponse>>> GetUserList()
             => await _mediator.Send(new GetApplicationUserListModel());
 
+        [HttpGet(Router.User.Paginated)]
+        public async Task<IActionResult> GetUserListPagination([FromQuery] GetApplicationUserByPagination query)
+          => Ok(await _mediator.Send(query));
+
         [HttpGet(Router.User.GetById)]
         public async Task<Response<GetApplicationUserResponse>> GetUserById([FromRoute] string Id)
            => await _mediator.Send(new GetApplicationUserByIdModel(Id));

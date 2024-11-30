@@ -11,6 +11,9 @@ namespace MyProject.Core.Features.Users.Commands.Handler
 {
     public class AddApplicationUserHandler : ResponseHandler
         , IRequestHandler<AddApplicationUserCommand, Response<AddApplicationUserCommand>>
+
+
+
     {
         private IApplicationUserService _applicationUserService;
         private IMapper _map;
