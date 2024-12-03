@@ -44,12 +44,19 @@
             public const string Prefix = Rule + "User";
             public const string Paginated = Prefix + "/Paginated";
             public const string List = Prefix + "/List";
+            public const string SignIn = Prefix + "/SignIn";
             public const string GetById = Prefix + Id;
 
             public const string Add = Prefix + "/Add";
             public const string Delete = Prefix + "/Delete";
             public const string DeletById = Delete + Id;
 
+        }
+
+        public static class Authentication
+        {
+            public const string Prefix = Rule + "Authentication";
+            public const string SignIn = Prefix + "/SignIn";
         }
 
     }

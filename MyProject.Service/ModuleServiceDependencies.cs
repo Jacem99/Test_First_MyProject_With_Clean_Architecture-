@@ -13,8 +13,9 @@ namespace MyProject.Service
             services.AddScoped<IStudentServiece, StudentServiece>();
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<ISubjectService, SubjectService>();
-            services.AddScoped(typeof(IApplicationUserService),typeof(ApplicationUserService));
-      
+            services.AddScoped(typeof(IApplicationUserService), typeof(ApplicationUserService));
+            services.AddScoped(typeof(IAuthenticationUserService), typeof(AuthenticationUserService));
+
             return services;
         }
 

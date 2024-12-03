@@ -19,14 +19,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("Data"));
 });
 
-
 // Dependancies
 builder.Services
     .AddInfrastructureDependencies()
     .AddServiceDependencies()
     .AddCoreDependencies()
-    .AddRegisterModuleInfrastructureDependencies();
-   
+    .AddRegisterModuleInfrastructureDependencies(builder.Configuration);
+
 
 
 var app = builder.Build();
