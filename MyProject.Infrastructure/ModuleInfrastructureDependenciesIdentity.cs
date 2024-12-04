@@ -27,8 +27,7 @@ namespace MyProject.Infrastructure
                 option.Lockout.AllowedForNewUsers = true;
 
                 option.User.RequireUniqueEmail = true;
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders
                 ();
 
             var JwtSettings = new JwtSettings();

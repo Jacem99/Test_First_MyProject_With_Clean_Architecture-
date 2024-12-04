@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using MyProject.Core.Features.Users.Queries.Models;
 using MyProject.Core.Features.Users.Result;
 using MyProject.Core.Generic_Response;
+using MyProject.Core.SharedResources;
 using MyProject.Core.Wrapper;
 using MyProject.Data.Entities;
 using MyProject.Service.IServices;
@@ -18,12 +20,14 @@ namespace MyProject.Core.Features.Users.Queries.Handler
 
     {
         private readonly IApplicationUserService _applicationUserService;
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
         private readonly IMapper _map;
 
-        public GetApplicationUserHandler(IApplicationUserService applicationUserService, IMapper map)
+        public GetApplicationUserHandler(IApplicationUserService applicationUserService, IMapper map, IStringLocalizer<SharedResource> stringLocalizer)
         {
             _applicationUserService = applicationUserService;
             _map = map;
+            _stringLocalizer = stringLocalizer;
         }
 
 
@@ -45,7 +49,7 @@ namespace MyProject.Core.Features.Users.Queries.Handler
             // Check If User Exist 
             var checkUserExist = await _applicationUserService.GetUserById(request._userId);
             if (checkUserExist is null)
-                return NotFound<GetApplicationUserResponse>("User you want to find not found !!");
+                return NotFound<GetApplicationUserResponse>(_stringLocalizer[SharedResourcesKeys.NotFound]);
             // Mapping 
             var mapping = _map.Map<GetApplicationUserResponse>(checkUserExist);
 
@@ -65,7 +69,6 @@ namespace MyProject.Core.Features.Users.Queries.Handler
 
             // return Users
             return userList;
-
         }
     }
 }

@@ -2,9 +2,11 @@
 
 using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using MyProject.Core.Features.Departments.Queries.Models;
 using MyProject.Core.Features.Departments.Queries.Results;
 using MyProject.Core.Generic_Response;
+using MyProject.Core.SharedResources;
 using MyProject.Service.IServices;
 
 namespace MyProject.Core.Features.Departments.Queries.Handlers
@@ -15,11 +17,12 @@ namespace MyProject.Core.Features.Departments.Queries.Handlers
     {
         private readonly IMapper _mapper;
         private readonly IDepartmentService _departmentService;
-
-        public GetListDepartmentHandler(IMapper mapper, IDepartmentService departmentService)
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
+        public GetListDepartmentHandler(IMapper mapper, IDepartmentService departmentService, IStringLocalizer<SharedResource> stringLocalizer)
         {
             _mapper = mapper;
             _departmentService = departmentService;
+            _stringLocalizer = stringLocalizer;
         }
 
         public async Task<Response<List<GetListDepartmentResponse>>> Handle(GetListDepartmentModel request, CancellationToken cancellationToken)
@@ -41,9 +44,9 @@ namespace MyProject.Core.Features.Departments.Queries.Handlers
             // Check If Exist 
 
             if (request.Id <= 0)
-                return BadRequest<GetDepartmentIdResponse>("Id Empty");
+                return BadRequest<GetDepartmentIdResponse>(_stringLocalizer[SharedResourcesKeys.Empty]);
             if (DepartmentById == null)
-                return NotFound<GetDepartmentIdResponse>("Not Found!");
+                return NotFound<GetDepartmentIdResponse>(_stringLocalizer[SharedResourcesKeys.NotFound]);
             // Mapping 
 
             var map = _mapper.Map<GetDepartmentIdResponse>(DepartmentById);

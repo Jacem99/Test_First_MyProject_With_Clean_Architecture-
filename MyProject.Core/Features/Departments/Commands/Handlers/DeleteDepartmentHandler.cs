@@ -1,35 +1,35 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Localization;
 using MyProject.Core.Features.Departments.Commands.Models;
 using MyProject.Core.Generic_Response;
+using MyProject.Core.SharedResources;
 using MyProject.Data.Entities;
 using MyProject.Service.IServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyProject.Core.Features.Departments.Commands.Handlers
 {
-    public class DeleteDepartmentHandler : 
+    public class DeleteDepartmentHandler :
         ResponseHandler,
         IRequestHandler<DeleteDepartmentModel, Response<Department>>
     {
         private readonly IDepartmentService _departmentService;
-        public DeleteDepartmentHandler(IDepartmentService departmentService)
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
+
+        public DeleteDepartmentHandler(IDepartmentService departmentService, IStringLocalizer<SharedResource> stringLocalizer)
         {
             _departmentService = departmentService;
+            _stringLocalizer = stringLocalizer;
         }
         public async Task<Response<Department>> Handle(DeleteDepartmentModel request, CancellationToken cancellationToken)
         {
             // Check Department Model Exist 
             var resultCheckDepartment = await _departmentService.GetDepartmentById(request.Id);
             if (resultCheckDepartment is null)
-                return NotFound<Department>("Department you want to delete not found !!");
+                return NotFound<Department>();
             // Delete Model
-              await  _departmentService.DeleteDeaprtmentById(resultCheckDepartment);
+            await _departmentService.DeleteDeaprtmentById(resultCheckDepartment);
             // Return Model 
-            return Success(resultCheckDepartment , null , "Successfull Deleted");
+            return Success(resultCheckDepartment, null, _stringLocalizer[SharedResourcesKeys.Deleted]);
 
         }
     }

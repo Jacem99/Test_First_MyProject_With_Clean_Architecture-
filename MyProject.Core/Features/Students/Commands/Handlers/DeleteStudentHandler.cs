@@ -1,25 +1,25 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Localization;
 using MyProject.Core.Features.Students.Commands.Models;
 using MyProject.Core.Generic_Response;
+using MyProject.Core.SharedResources;
 using MyProject.Data.Entities;
 using MyProject.Service.IServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyProject.Core.Features.Students.Commands.Handlers
 {
-    public class DeleteStudentHandler : 
+    public class DeleteStudentHandler :
         ResponseHandler,
         IRequestHandler<DeleteStudentModel, Response<Student>>
     {
         private readonly IStudentServiece _studentServiece;
 
-        public DeleteStudentHandler(IStudentServiece studentServiece)
+        private readonly IStringLocalizer<SharedResource> _stringLocalizer;
+
+        public DeleteStudentHandler(IStudentServiece studentServiece, IStringLocalizer<SharedResource> stringLocalizer)
         {
             _studentServiece = studentServiece;
+            _stringLocalizer = stringLocalizer;
         }
 
         public async Task<Response<Student>> Handle(DeleteStudentModel request, CancellationToken cancellationToken)
@@ -27,10 +27,10 @@ namespace MyProject.Core.Features.Students.Commands.Handlers
             // Check Student Model Exist
             var resultStudent = await _studentServiece.GetStudentByIdAsync(request.Id);
             if (resultStudent is null)
-                return NotFound<Student>("Student that you want to delete not found !!");
+                return NotFound<Student>(_stringLocalizer[SharedResourcesKeys.NotFound]);
             // Delete Model 
             await _studentServiece.DeleteStudent(resultStudent);
-            return Success(resultStudent,null,"Successfull Deleted");
+            return Success(resultStudent, null, _stringLocalizer[SharedResourcesKeys.Deleted]);
         }
     }
 }
