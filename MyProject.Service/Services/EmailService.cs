@@ -1,11 +1,18 @@
 ﻿
 using MailKit.Net.Smtp;
 using MimeKit;
+using MyProject.Data.Helper;
 using MyProject.Service.IServices;
 namespace MyProject.Service.Services
 {
     public class EmailService : IEmailService
     {
+        private readonly EmailSettings _emailsettings;
+
+        public EmailService(EmailSettings emailsettings)
+        {
+            _emailsettings = emailsettings;
+        }
 
         public async Task<string> SendEmailAsync(string subject, string email, string Message)
         {
@@ -13,8 +20,8 @@ namespace MyProject.Service.Services
             {
                 using (var client = new SmtpClient())
                 {
-                    await client.ConnectAsync("smtp.gmail.com", 465, true);
-                    client.Authenticate("mustafakhalil1199@gmail.com", "wmkqygsyggecrpnd");
+                    await client.ConnectAsync(_emailsettings.Host, _emailsettings.Port, _emailsettings.UseSsl);
+                    client.Authenticate(_emailsettings.AuthenticationMail, _emailsettings.AuthenticationAppPassword);
 
                     var bodyBuilder = new BodyBuilder
                     {
@@ -26,8 +33,8 @@ namespace MyProject.Service.Services
                     {
                         Body = bodyBuilder.ToMessageBody()
                     };
-                    message.From.Add(new MailboxAddress("UniversityTeam", "mustafakhalil1199@gmail.com"));
-                    message.To.Add(new MailboxAddress("MustafaKhalil", email));
+                    message.From.Add(new MailboxAddress(_emailsettings.NameEnterPrice, _emailsettings.From));
+                    message.To.Add(new MailboxAddress(email, email));
                     message.Subject = subject;
                     await client.SendAsync(message);
                     await client.DisconnectAsync(true);

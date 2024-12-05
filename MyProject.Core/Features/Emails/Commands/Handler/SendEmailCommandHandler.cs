@@ -21,7 +21,7 @@ namespace MyProject.Core.Features.Emails.Commands.Handler
 
         public async Task<Response<string>> Handle(SendEmailCommandModel request, CancellationToken cancellationToken)
         {
-            if (await _emailService.SendEmailAsync(request.Email, request.Message) == "Success")
+            if (await _emailService.SendEmailAsync(request.Subject, request.Email, request.Message) == "Success")
                 return Success<string>(_stringLocalizer[SharedResourcesKeys.EmailSendSuccessfully]);
 
             return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.EmailSendFaild]);
