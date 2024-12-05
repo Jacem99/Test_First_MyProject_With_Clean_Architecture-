@@ -126,6 +126,12 @@
   <data name="EmailExist" xml:space="preserve">
     <value>Email Already Exist</value>
   </data>
+  <data name="EmailSendFaild" xml:space="preserve">
+    <value>Send Faild</value>
+  </data>
+  <data name="EmailSendSuccessfully" xml:space="preserve">
+    <value>Send Successfully</value>
+  </data>
   <data name="Empty" xml:space="preserve">
     <value>Argument Is Empty</value>
   </data>

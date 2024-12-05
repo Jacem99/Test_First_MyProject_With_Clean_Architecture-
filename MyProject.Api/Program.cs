@@ -28,6 +28,7 @@ builder.Services
     .AddRegisterModuleInfrastructureDependencies(builder.Configuration)
     .AddModuleCoreDependenciesLocalization();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

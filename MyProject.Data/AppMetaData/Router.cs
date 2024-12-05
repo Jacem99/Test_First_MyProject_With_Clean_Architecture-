@@ -58,6 +58,11 @@
             public const string Prefix = Rule + "Authentication";
             public const string SignIn = Prefix + "/SignIn";
         }
+        public static class Email
+        {
+            public const string Prefix = Rule + "Email";
+            public const string Send = Prefix + "/Send";
+        }
 
     }
 }

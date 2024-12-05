@@ -33,6 +33,11 @@ namespace MyProject.Infrastructure
             var JwtSettings = new JwtSettings();
             configuration.GetSection(nameof(JwtSettings)).Bind(JwtSettings);
 
+            var EmailSettings = new EmailSettings();
+
+            configuration.GetSection(nameof(EmailSettings)).Bind(EmailSettings);
+
+            services.AddSingleton(EmailSettings);
             services.AddSingleton(JwtSettings);
 
             services.AddAuthentication(option =>

@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+﻿/*using FluentValidation;
 using MyProject.Core.Features.Users.Commands.Models;
 
 namespace MyProject.Core.Features.Users.Commands.Validators
@@ -23,3 +23,4 @@ namespace MyProject.Core.Features.Users.Commands.Validators
 
     }
 }
+*/

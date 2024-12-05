@@ -17,6 +17,7 @@
     <Folder Include="Features\Authentication\Commands\Results\" />
     <Folder Include="Features\Authentication\Queries\Models\" />
     <Folder Include="Features\Authentication\Queries\Handlers\" />
+    <Folder Include="Features\Emails\Queries\" />
     <Folder Include="Features\Students\Commands\Validators\" />
     <Folder Include="Mapping\Departments\Commands\" />
     <Folder Include="Mapping\Students\CommandMapping\" />
@@ -25,8 +26,6 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.11.0" />
-    <PackageReference Include="FluentValidation.WebAPI" Version="8.6.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
   </ItemGroup>

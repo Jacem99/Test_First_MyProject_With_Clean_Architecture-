@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-
 using MyProject.Service.IServices;
 using MyProject.Service.Services;
 
@@ -15,6 +14,7 @@ namespace MyProject.Service
             services.AddScoped<ISubjectService, SubjectService>();
             services.AddScoped(typeof(IApplicationUserService), typeof(ApplicationUserService));
             services.AddScoped(typeof(IAuthenticationUserService), typeof(AuthenticationUserService));
+            services.AddTransient(typeof(IEmailService), typeof(EmailService));
 
             return services;
         }

@@ -17,12 +17,12 @@ namespace MyProject.Core
             services.Configure<RequestLocalizationOptions>(option =>
             {
                 List<CultureInfo> supportedCultures = new List<CultureInfo>
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("ar-EG"),
-        new CultureInfo("de-DE"),
-        new CultureInfo("fr-FR")
-    };
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("ar-EG"),
+                    new CultureInfo("de-DE"),
+                    new CultureInfo("fr-FR")
+                };
                 option.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("ar");
                 option.SupportedCultures = supportedCultures;
                 option.SupportedUICultures = supportedCultures;

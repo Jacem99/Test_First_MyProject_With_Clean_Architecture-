@@ -11,6 +11,8 @@
         public const string Exist = "Exist";
         public const string EmailExist = "EmailExist";
         public const string PhoneExist = "PhoneExist";
+        public const string EmailSendFaild = "EmailSendFaild";
+        public const string EmailSendSuccessfully = "EmailSendSuccessfully";
 
     }
 }

@@ -126,6 +126,12 @@
   <data name="EmailExist" xml:space="preserve">
     <value>الايميل متواجد بالفعل</value>
   </data>
+  <data name="EmailSendFaild" xml:space="preserve">
+    <value>فشل الارسال</value>
+  </data>
+  <data name="EmailSendSuccessfully" xml:space="preserve">
+    <value>تم الارسال بنجاح</value>
+  </data>
   <data name="Empty" xml:space="preserve">
     <value>برجاء ملئ قيمة عنصر البحث</value>
   </data>
