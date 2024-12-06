@@ -5,6 +5,7 @@ using MyProject.Core.Features.Users.Queries.Models;
 using MyProject.Core.Features.Users.Result;
 using MyProject.Core.Generic_Response;
 using MyProject.Data.AppMetaData;
+using Serilog;
 
 namespace MyProject.Api.Controllers
 {
@@ -13,10 +14,13 @@ namespace MyProject.Api.Controllers
     public class ApplicationUsersController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<GetApplicationUserResponse> _logger;
 
-        public ApplicationUsersController(IMediator mediator)
+        public ApplicationUsersController(IMediator mediator, ILogger<GetApplicationUserResponse> logger)
         {
             _mediator = mediator;
+            _logger = logger;
+
         }
 
         [HttpGet(Router.User.List)]
@@ -29,7 +33,10 @@ namespace MyProject.Api.Controllers
 
         [HttpGet(Router.User.GetById)]
         public async Task<Response<GetApplicationUserResponse>> GetUserById([FromRoute] string Id)
-           => await _mediator.Send(new GetApplicationUserByIdModel(Id));
+        {
+            Log.Information("We Are Here In Controller GetUserById");
+            return await _mediator.Send(new GetApplicationUserByIdModel(Id));
+        }
 
         [HttpPost(Router.User.Add)]
         public async Task<Response<AddApplicationUserCommand>> AddUser([FromBody] AddApplicationUserCommand user)

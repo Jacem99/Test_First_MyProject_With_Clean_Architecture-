@@ -4,6 +4,7 @@ using MyProject.Core;
 using MyProject.Infrastructure;
 using MyProject.Infrastructure.Data;
 using MyProject.Service;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,10 @@ builder.Services
     .AddRegisterModuleInfrastructureDependencies(builder.Configuration)
     .AddModuleCoreDependenciesLocalization();
 
+
+// SeriLog
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
+builder.Services.AddSerilog();
 
 var app = builder.Build();
 
